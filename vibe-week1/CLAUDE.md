@@ -13,6 +13,10 @@ This directory is a personal workspace, not a single cohesive project. It bundle
 
 There is no unifying build system, dependency manifest, or test suite across the whole directory — treat each subproject independently.
 
+## Overview
+
+- 바이브 코딩 2주차 실습을 위한 레포지토리 프로젝트 저장소입니다.
+
 ## Root-level Python scripts
 
 Standalone `.py` files, each an independent script written for a single class session or assignment. No shared entry point.
