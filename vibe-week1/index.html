@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>동덕여자대학교 데이터사이언스전공 | 학생 통합 관리</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark">DW</span>
+        <div class="brand-text">
+          <strong>동덕여자대학교</strong>
+          <span>데이터사이언스전공</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#attendance">출결관리</a>
+        <a href="#grades">성적관리</a>
+        <a href="#assignments">과제관리</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">2026학년도 1학기</p>
+      <h1>고수민님, 안녕하세요 👋</h1>
+      <p class="hero-desc">출결, 성적, 과제 현황을 한 페이지에서 확인하세요.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>96%</strong>
+          <span>이번 학기 출석률</span>
+        </div>
+        <div class="hero-stat">
+          <strong>4.2</strong>
+          <span>평균 평점 (4.5 만점)</span>
+        </div>
+        <div class="hero-stat">
+          <strong>2건</strong>
+          <span>마감 임박 과제</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="dashboard">
+    <div class="dashboard-grid">
+
+      <article class="card" id="attendance">
+        <div class="card-header">
+          <span class="card-icon icon-attendance" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M8 12.5l2.5 2.5L16 9" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div>
+            <h2>출결관리</h2>
+            <p class="card-sub">이번 학기 출석 현황</p>
+          </div>
+        </div>
+
+        <div class="progress-block">
+          <div class="progress-labels">
+            <span>출석률</span>
+            <strong>96%</strong>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-progress="96" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <ul class="record-list">
+          <li>
+            <span class="record-date">07.15 (수)</span>
+            <span class="record-name">데이터구조론</span>
+            <span class="badge badge-good">출석</span>
+          </li>
+          <li>
+            <span class="record-date">07.14 (화)</span>
+            <span class="record-name">통계학개론</span>
+            <span class="badge badge-good">출석</span>
+          </li>
+          <li>
+            <span class="record-date">07.12 (일)</span>
+            <span class="record-name">인공지능개론</span>
+            <span class="badge badge-warn">지각</span>
+          </li>
+          <li>
+            <span class="record-date">07.10 (금)</span>
+            <span class="record-name">알고리즘</span>
+            <span class="badge badge-good">출석</span>
+          </li>
+        </ul>
+
+        <button class="card-btn" type="button">출결 전체보기</button>
+      </article>
+
+      <article class="card" id="grades">
+        <div class="card-header">
+          <span class="card-icon icon-grades" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div>
+            <h2>성적관리</h2>
+            <p class="card-sub">과목별 성적 현황</p>
+          </div>
+        </div>
+
+        <div class="gpa-block">
+          <strong class="gpa-number">4.2</strong>
+          <span class="gpa-label">평균 평점 / 4.5</span>
+        </div>
+
+        <ul class="grade-list">
+          <li>
+            <span class="record-name">데이터구조론</span>
+            <span class="grade-score">A+</span>
+          </li>
+          <li>
+            <span class="record-name">통계학개론</span>
+            <span class="grade-score">A0</span>
+          </li>
+          <li>
+            <span class="record-name">인공지능개론</span>
+            <span class="grade-score">A+</span>
+          </li>
+          <li>
+            <span class="record-name">알고리즘</span>
+            <span class="grade-score">B+</span>
+          </li>
+        </ul>
+
+        <button class="card-btn" type="button">성적표 보기</button>
+      </article>
+
+      <article class="card" id="assignments">
+        <div class="card-header">
+          <span class="card-icon icon-assignments" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="3" width="14" height="18" rx="2" />
+              <path d="M9 8h6M9 12h6M9 16h3" stroke-linecap="round" />
+            </svg>
+          </span>
+          <div>
+            <h2>과제관리</h2>
+            <p class="card-sub">진행 중인 과제 현황</p>
+          </div>
+        </div>
+
+        <ul class="task-list">
+          <li>
+            <div class="task-info">
+              <span class="record-name">데이터구조론 · 과제 3</span>
+              <span class="task-due">D-2</span>
+            </div>
+            <span class="badge badge-progress">진행중</span>
+          </li>
+          <li>
+            <div class="task-info">
+              <span class="record-name">통계학개론 · 리포트</span>
+              <span class="task-due">D-5</span>
+            </div>
+            <span class="badge badge-progress">진행중</span>
+          </li>
+          <li>
+            <div class="task-info">
+              <span class="record-name">인공지능개론 · 프로젝트 제안서</span>
+              <span class="task-due">제출완료</span>
+            </div>
+            <span class="badge badge-good">완료</span>
+          </li>
+          <li>
+            <div class="task-info">
+              <span class="record-name">알고리즘 · 과제 2</span>
+              <span class="task-due">마감 지남</span>
+            </div>
+            <span class="badge badge-danger">미제출</span>
+          </li>
+        </ul>
+
+        <button class="card-btn" type="button">과제 전체보기</button>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 동덕여자대학교 데이터사이언스전공 · vibe-coding</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
