@@ -48,3 +48,7 @@ An independent git repository (has its own `.git`, no commits yet as of this wri
 - `images/` — currently empty.
 
 No build tooling — open `index.html` directly or serve the folder with any static file server.
+
+## 디자인 규칙
+
+- 버튼: 연보라(`#bb8cff`) 배경, 모서리 둥글기 12px

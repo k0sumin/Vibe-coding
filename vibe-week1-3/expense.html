@@ -21,6 +21,8 @@
       --mint-deep: #6fd8a3;
       --lavender: #e3d9fb;
       --peach: #ffe3c2;
+      --purple: #bb8cff;
+      --purple-deep: #9a5cff;
       --ink: #4a3f4d;
       --ink-muted: #9a8ea0;
       --border: #f0e4ee;
@@ -97,26 +99,69 @@
     }
 
     #add-btn {
-      margin-top: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      margin-top: 0.9rem;
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.95rem;
       border: none;
       border-radius: 12px;
-      background: linear-gradient(120deg, var(--pink-deep), #ffb3c6);
+      background: linear-gradient(120deg, var(--purple), var(--purple-deep) 55%, #c9a3ff);
+      background-size: 220% auto;
       color: #fff;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
       cursor: pointer;
-      transition: transform 0.12s, box-shadow 0.12s;
+      box-shadow: 0 8px 20px rgba(154, 92, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background-position 0.5s ease;
+    }
+
+    #add-btn::before {
+      content: '+';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.45rem;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      font-size: 1rem;
+      font-weight: 900;
+      vertical-align: -0.35rem;
+    }
+
+    #add-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
     }
 
     #add-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(255, 143, 171, 0.35);
+      background-position: right center;
+      transform: translateY(-3px) scale(1.015);
+      box-shadow: 0 14px 30px rgba(154, 92, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    #add-btn:hover::after {
+      left: 130%;
     }
 
     #add-btn:active {
-      transform: translateY(0);
+      transform: translateY(-1px) scale(0.97);
+      box-shadow: 0 5px 12px rgba(187, 140, 255, 0.4);
+    }
+
+    #add-btn:focus-visible {
+      outline: 2px solid var(--purple-deep);
+      outline-offset: 3px;
     }
 
     .list-card {
@@ -152,22 +197,37 @@
     }
 
     .delete-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: none;
-      background: var(--mint);
-      color: #2f8f63;
-      width: 26px;
-      height: 26px;
+      background: linear-gradient(135deg, var(--purple), #d4bbff);
+      color: #fff;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       line-height: 1;
       cursor: pointer;
       flex-shrink: 0;
-      transition: background 0.15s;
+      box-shadow: 0 2px 6px rgba(187, 140, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      transition: background 0.25s ease, color 0.2s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
     }
 
     .delete-btn:hover {
-      background: var(--danger);
+      background: linear-gradient(135deg, var(--danger), #ff6f91);
       color: #fff;
+      transform: scale(1.15) rotate(90deg);
+      box-shadow: 0 6px 14px rgba(255, 111, 145, 0.5);
+    }
+
+    .delete-btn:active {
+      transform: scale(0.9) rotate(90deg);
+    }
+
+    .delete-btn:focus-visible {
+      outline: 2px solid var(--danger);
+      outline-offset: 2px;
     }
 
     .empty-msg {
