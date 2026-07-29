@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>미니 가계부 분석기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --pink: #ffd3e0;
+      --pink-deep: #ff8fab;
+      --mint: #c8f4de;
+      --mint-deep: #6fd8a3;
+      --lavender: #e3d9fb;
+      --peach: #ffe3c2;
+      --ink: #4a3f4d;
+      --ink-muted: #9a8ea0;
+      --border: #f0e4ee;
+      --bg: #fdf6fa;
+      --danger: #ff8fa3;
+    }
+
+    body {
+      font-family: "Noto Sans KR", -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+      background: linear-gradient(160deg, var(--bg), #f3ecfb 60%, #eafaf1);
+      min-height: 100vh;
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+      padding: 3rem 1.25rem;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .title h1 {
+      font-size: 1.6rem;
+      font-weight: 900;
+    }
+
+    .title p {
+      margin-top: 0.35rem;
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(255, 143, 171, 0.12);
+      margin-bottom: 1.25rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .form-row input {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.92rem;
+      font-family: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-row input:focus {
+      border-color: var(--pink-deep);
+    }
+
+    #item-name {
+      flex: 1.3;
+    }
+
+    #item-amount {
+      flex: 1;
+    }
+
+    #add-btn {
+      margin-top: 0.75rem;
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(120deg, var(--pink-deep), #ffb3c6);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s;
+    }
+
+    #add-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(255, 143, 171, 0.35);
+    }
+
+    #add-btn:active {
+      transform: translateY(0);
+    }
+
+    .list-card {
+      padding: 0.5rem 1.5rem;
+    }
+
+    #expense-list {
+      list-style: none;
+    }
+
+    #expense-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.9rem 0.1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #expense-list li:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      flex: 1;
+      font-weight: 500;
+    }
+
+    .item-amount {
+      font-weight: 700;
+      color: var(--pink-deep);
+      white-space: nowrap;
+    }
+
+    .delete-btn {
+      border: none;
+      background: var(--mint);
+      color: #2f8f63;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+
+    .delete-btn:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .empty-msg {
+      text-align: center;
+      padding: 1.5rem 0;
+      color: var(--ink-muted);
+      font-size: 0.88rem;
+    }
+
+    .total-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(120deg, var(--lavender), var(--peach));
+    }
+
+    .total-card span {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .total-card strong {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--ink);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="title">
+      <h1>💸 미니 가계부 분석기</h1>
+      <p>항목과 금액을 입력하고 지출을 관리해 보세요</p>
+    </div>
+
+    <div class="card">
+      <div class="form-row">
+        <input type="text" id="item-name" placeholder="항목명 (예: 점심값)">
+        <input type="number" id="item-amount" placeholder="금액">
+      </div>
+      <button id="add-btn" type="button">추가하기</button>
+    </div>
+
+    <div class="card list-card">
+      <ul id="expense-list"></ul>
+      <p class="empty-msg" id="empty-msg">아직 등록된 항목이 없어요</p>
+    </div>
+
+    <div class="card total-card">
+      <span>총 합계</span>
+      <strong id="total-amount">0원</strong>
+    </div>
+  </div>
+
+  <script>
+    const nameInput = document.getElementById('item-name');
+    const amountInput = document.getElementById('item-amount');
+    const addBtn = document.getElementById('add-btn');
+    const listEl = document.getElementById('expense-list');
+    const emptyMsg = document.getElementById('empty-msg');
+    const totalEl = document.getElementById('total-amount');
+
+    let expenses = [];
+
+    // 목록과 합계를 화면에 다시 그림
+    function render() {
+      listEl.innerHTML = '';
+      emptyMsg.style.display = expenses.length === 0 ? 'block' : 'none';
+
+      expenses.forEach((expense) => {
+        const li = document.createElement('li');
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'item-name';
+        nameSpan.textContent = expense.name;
+
+        const amountSpan = document.createElement('span');
+        amountSpan.className = 'item-amount';
+        amountSpan.textContent = expense.amount.toLocaleString() + '원';
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.type = 'button';
+        deleteBtn.textContent = '✕';
+        deleteBtn.addEventListener('click', () => {
+          expenses = expenses.filter((item) => item.id !== expense.id);
+          render();
+        });
+
+        li.append(nameSpan, amountSpan, deleteBtn);
+        listEl.appendChild(li);
+      });
+
+      const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+      totalEl.textContent = total.toLocaleString() + '원';
+    }
+
+    function addExpense() {
+      const name = nameInput.value.trim();
+      const amount = Number(amountInput.value);
+
+      if (!name || !amount || amount <= 0) {
+        alert('항목명과 올바른 금액을 입력해 주세요.');
+        return;
+      }
+
+      expenses.push({ id: Date.now(), name, amount });
+      nameInput.value = '';
+      amountInput.value = '';
+      nameInput.focus();
+      render();
+    }
+
+    addBtn.addEventListener('click', addExpense);
+    amountInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addExpense();
+    });
+    nameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') addExpense();
+    });
+
+    render();
+  </script>
+</body>
+
+</html>
