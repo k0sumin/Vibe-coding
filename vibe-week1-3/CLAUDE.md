@@ -9,7 +9,7 @@ This directory is a personal workspace, not a single cohesive project. It bundle
 - **Root-level files** — standalone Python exercise scripts from a university course, "2022-1학기 파이썬프로그래밍" (Python Programming, Spring 2022), student ID 20221607.
 - **`vibe-coding/`** — a separate, independent git repository containing a static HTML/CSS/JS starter page.
 - **`vibe-week1/`** — currently empty.
-- **`hello/`** — currently contains only a stray `CLAUDE.md` (no source files); its content actually describes the root-level Python scripts, not anything inside `hello/` itself. Treat it as orphaned rather than authoritative for that directory.
+- **`hello/`** — currently contains only a stray `CLAUDE.md` (no source files); its content actually describes the root-level Python scripts, not anything inside `hello/` itself. Treat it as orphaned rather than authoritative for that directory.ㅔㅕ
 
 There is no unifying build system, dependency manifest, or test suite across the whole directory — treat each subproject independently.
 
